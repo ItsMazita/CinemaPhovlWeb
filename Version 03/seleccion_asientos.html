@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Seleccionar Asientos - Cinema PHOVL</title>
+<link rel="stylesheet" href="css/asientos.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="Pagina Principal.html">Inicio</a>
+  <a href="pagina_boletos.html">Volver</a>
+</div>
+
+<!-- Contenido -->
+<div class="container">
+
+  <h2>Selecciona tus Asientos</h2>
+
+  <div class="info-boletos" id="infoBoletos"></div>
+
+  <div class="screen">PANTALLA</div>
+
+  <div id="sala"></div>
+
+  <div id="leyenda">
+    <div style=color:red> Ocupado</div>
+    <div style="color:#666"> Disponible</div>
+  </div>
+
+  <button class="btn-confirmar" onclick="confirmar()">Confirmar Asientos</button>
+
+</div>
+
+<script src="js/asientos.js"></script>
+
+</body>
+</html>

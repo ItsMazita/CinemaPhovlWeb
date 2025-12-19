@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/boletos.css"/>
+<title>Gestión de Boletos - Cinema PHOVL</title>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebarPanel">
+  <div class="logo" id="toggleMenu">🎬 Cinema PHOVL</div>
+
+  <div class="menu-items" id="menuItems">
+    <a href="Pagina Principal.html">Inicio</a>
+    <a href="sucursal1.html">Volver a Sucursal</a>
+    <a href="index.html">Cerrar sesión</a>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="container">
+  <h2>Gestión de Boletos</h2>
+
+  <div class="ticket-box">
+
+    <!-- TOTAL -->
+    <div id="total" class="total">$0 MXN</div>
+
+    <!-- NIÑOS -->
+    <div class="ticket-section">
+      <div class="ticket-title">Niños</div>
+      <div class="ticket-price">$55 c/u</div>
+      <div id="sub_ninos" class="ticket-subtotal">Subtotal: $0 MXN</div>
+
+      <div class="ticket-controls">
+        <button class="arrow-btn" onclick="cambiar('ninos', -1)">➖</button>
+        <span id="ninos" class="ticket-value">0</span>
+        <button class="arrow-btn" onclick="cambiar('ninos', 1)">➕</button>
+      </div>
+    </div>
+
+    <!-- ADULTOS -->
+    <div class="ticket-section">
+      <div class="ticket-title">Adultos</div>
+      <div class="ticket-price">$85 c/u</div>
+      <div id="sub_adultos" class="ticket-subtotal">Subtotal: $0 MXN</div>
+
+      <div class="ticket-controls">
+        <button class="arrow-btn" onclick="cambiar('adultos', -1)">➖</button>
+        <span id="adultos" class="ticket-value">0</span>
+        <button class="arrow-btn" onclick="cambiar('adultos', 1)">➕</button>
+      </div>
+    </div>
+
+    <!-- ESTUDIANTES -->
+    <div class="ticket-section">
+      <div class="ticket-title">Estudiantes</div>
+      <div class="ticket-price">$65 c/u</div>
+      <div id="sub_estudiantes" class="ticket-subtotal">Subtotal: $0 MXN</div>
+
+      <div class="ticket-controls">
+        <button class="arrow-btn" onclick="cambiar('estudiantes', -1)">➖</button>
+        <span id="estudiantes" class="ticket-value">0</span>
+        <button class="arrow-btn" onclick="cambiar('estudiantes', 1)">➕</button>
+      </div>
+    </div>
+
+    <!-- ADULTOS MAYORES -->
+    <div class="ticket-section">
+      <div class="ticket-title">Adultos Mayores</div>
+      <div class="ticket-price">$60 c/u</div>
+      <div id="sub_mayores" class="ticket-subtotal">Subtotal: $0 MXN</div>
+
+      <div class="ticket-controls">
+        <button class="arrow-btn" onclick="cambiar('mayores', -1)">➖</button>
+        <span id="mayores" class="ticket-value">0</span>
+        <button class="arrow-btn" onclick="cambiar('mayores', 1)">➕</button>
+      </div>
+    </div>
+
+    <button class="btn-continuar" onclick="guardarBoletos()">Continuar a Selección de Asientos</button>
+  </div>
+</div>
+<script src="js/boletos.js"></script>
+</body>
+</html>
