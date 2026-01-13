@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="css/sucursal.css"/>
   <title>Sucursal 3 - Cinema PHOVL</title>
 </head>
-<body>
 
-<!-- SIDEBAR -->
+<body data-sucursal="3">
+
 <div class="sidebar" id="sidebarPanel">
   <div class="logo" id="toggleMenu">🎬 Cinema PHOVL</div>
 
@@ -29,241 +29,35 @@
   </div>
 </div>
 
-<!-- CONTENIDO -->
+
 <div class="container">
+
   <h2>Sucursal 3</h2>
   <p>Bienvenido a la Sucursal 3 de Cinema PHOVL</p>
-<div class="calendar-container">
+
+
+  <div class="calendar-container">
 
     <button id="monthButton"></button>
 
     <div class="week" id="weekDays"></div>
 
     <div class="mini-calendar" id="miniCalendar">
-        <div class="mini-header">
-            <button id="prev">&lt;</button>
-            <span id="miniMonth"></span>
-            <button id="next">&gt;</button>
-        </div>
-        <div class="calendar-grid" id="calendarGrid"></div>
+      <div class="mini-header">
+        <button id="prev">&lt;</button>
+        <span id="miniMonth"></span>
+        <button id="next">&gt;</button>
+      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
     </div>
+
+  </div>
+
+
+  <div id="cartelera"></div>
 
 </div>
 
-  <!-- PELÍCULA 1 -->
-  <div class="pelicula-card">
-    <img src="resources/zootopia-2.jpg" />
-    <div class="info">
-      <h3></h3>
-      <p><strong>Clasificación: B</strong> </p>
-      <p><strong>Duración: 2 h 5 min</strong> </p>
-      <p><strong>Sinopsis: Judy Hoops y Nick Wilde regresan en una nueva aventura</strong> </p>
-<a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>12:00</button>
-        <button>15:40</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>18:20</button>
-        <button>21:00</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PELÍCULA 2 -->
-  <div class="pelicula-card">
-    <img src="resources/FNAF.jpg" />
-    <div class="info">
-      <h3></h3>
-      <p><strong>Clasificación: PG-13</strong> </p>
-      <p><strong>Duración: 1 h 55 min</strong> </p>
-      <p><strong>Sinopsis: El guardia nocturno enfrenta nuevos animatrónicosmás terror y suspenso</strong> .</p>
-<a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>11:00</button>
-        <button>13:20</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>17:10</button>
-        <button>19:40</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PELÍCULA 3 -->
-  <div class="pelicula-card">
-    <img src="resources/Guardianes de la galaxia vol 3.png" />
-    <div class="info">
-      <h3>Guardianes de la galaxia vol 3</h3>
-      <p><strong>Clasificación:</strong> PG-13</p>
-      <p><strong>Duración:</strong> 2h 30min</p>
-      <p><strong>Sinopsis:</strong> Nuevos desafios para nuestro intrepido grupo y traumas del pasado que vuelven a flote.</p>
-<a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>14:00</button>
-        <button>16:30</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>19:10</button>
-        <button>21:40</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PELÍCULA 4 -->
-  <div class="pelicula-card">
-    <img src="resources/Spider-Man No Way Home.jpg" />
-    <div class="info">
-      <h3>Spiderman No Way Home</h3>
-      <p><strong>Clasificación:</strong> PG-13</p>
-      <p><strong>Duración:</strong> 2h 30min</p>
-      <p><strong>Sinopsis:</strong> Una gran amenaza multiversal.</p>
-<a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>10:00</button>
-        <button>12:45</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>17:30</button>
-        <button>20:00</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PELÍCULA 5 -->
-  <div class="pelicula-card">
-    <img src="" />
-    <div class="info">
-      <h3></h3>
-      <p><strong>Clasificación:</strong> </p>
-      <p><strong>Duración:</strong> </p>
-      <p><strong>Sinopsis:</strong> </p>
-<a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>11:10</button>
-        <button>13:50</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>18:10</button>
-        <button>20:40</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PELÍCULA 6 -->
-  <div class="pelicula-card">
-    <img src="" />
-    <div class="info">
-      <h3></h3>
-      <p><strong>Clasificación:</strong> </p>
-      <p><strong>Duración:</strong> </p>
-      <p><strong>Sinopsis:</strong>  </p>
-      <a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>12:30</button>
-        <button>15:00</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>18:45</button>
-        <button>21:15</button>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 <script src="js/sucursal.js"></script>
 

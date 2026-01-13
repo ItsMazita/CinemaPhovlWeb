@@ -20,25 +20,37 @@ function cancelarCompra(){
   window.location.href = "Pagina Principal.html";
 }
 
-function confirmarPago(){
-  const metodo = document.querySelector('input[name="pago"]:checked');
+/* ================== PAYPAL ================== */
+paypal.Buttons({
+    style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'paypal'
+    },
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: total.toFixed(2)  // Total que ya calculaste
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            alert("✅ Pago con PayPal completado por " + details.payer.name.given_name);
+            // Marcar asientos como ocupados
+            const ocupados = JSON.parse(localStorage.getItem("asientosOcupados")) || [];
+            const temporal = JSON.parse(localStorage.getItem("asientosTemporal")) || [];
+            localStorage.setItem(
+                "asientosOcupados",
+                JSON.stringify([...ocupados, ...temporal])
+            );
+            localStorage.removeItem("asientosTemporal");
+            window.location.href = "Pagina Principal.html";
+        });
+    }
+}).render('#paypal-button-container'); // Renderizar en el contenedor
 
-  if(!metodo){
-    alert("Seleccione un método de pago.");
-    return;
-  }
 
-  const ocupados = JSON.parse(localStorage.getItem("asientosOcupados")) || [];
-  const temporal = JSON.parse(localStorage.getItem("asientosTemporal")) || [];
-
-  localStorage.setItem(
-    "asientosOcupados",
-    JSON.stringify([...ocupados, ...temporal])
-  );
-
-  localStorage.removeItem("asientosTemporal");
-
-  alert("✅ Venta confirmada\nMétodo de pago: " + metodo.value);
-
-  window.location.href = "Pagina Principal.html";
-}

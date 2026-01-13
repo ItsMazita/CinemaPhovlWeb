@@ -3,15 +3,23 @@ const msgBox = document.getElementById("welcomeBox");
 async function handleRegister(e) {
   e.preventDefault();
 
-  msgBox.innerHTML = "⏳ Registrando usuario...";
+  msgBox.textContent = "⏳ Registrando usuario...";
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
+  const nombre = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefono = document.getElementById("telefono")
+    ? document.getElementById("telefono").value.trim()
+    : null;
   const password = document.getElementById("password").value;
   const confirm = document.getElementById("confirmPassword").value;
 
+  if (!nombre || !email || !password) {
+    msgBox.textContent = "❌ Completa todos los campos obligatorios";
+    return;
+  }
+
   if (password !== confirm) {
-    msgBox.innerHTML = "❌ Las contraseñas no coinciden";
+    msgBox.textContent = "❌ Las contraseñas no coinciden";
     return;
   }
 
@@ -19,23 +27,29 @@ async function handleRegister(e) {
     const res = await fetch(`${API_URL}/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({
+        nombre,
+        email,
+        telefono,
+        password
+      })
     });
 
     const data = await res.json();
 
     if (!res.ok) {
-      msgBox.innerHTML = `❌ ${data.error || "Error al registrar"}`;
+      msgBox.textContent = `❌ ${data.error || "Error al registrar usuario"}`;
       return;
     }
 
-    msgBox.innerHTML = "✅ Registro exitoso 🎉 Redirigiendo...";
+    msgBox.textContent = "✅ Registro exitoso 🎉 Redirigiendo al login...";
 
     setTimeout(() => {
-      window.location.href = "Index.html";
+      window.location.href = "index.html"; // login
     }, 1500);
 
   } catch (error) {
-    msgBox.innerHTML = "❌ No se pudo conectar con el servidor";
+    console.error(error);
+    msgBox.textContent = "❌ No se pudo conectar con el servidor";
   }
 }
