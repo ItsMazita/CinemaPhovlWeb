@@ -1,9 +1,5 @@
 const API_URL = "https://cinema-phovl-api.onrender.com";
 
-/* ===============================
-   PRECIOS
-================================ */
-
 const precios = {
   ninos: 55,
   adultos: 85,
@@ -21,13 +17,9 @@ let total =
 
 document.getElementById("total").textContent = `$${total} MXN`;
 
-/* ===============================
-   COMPRA REAL
-================================ */
-
 async function realizarCompra() {
-  const id_funcion = localStorage.getItem("id_funcion");
-  const id_usuario = localStorage.getItem("id_usuario");
+  const id_funcion = Number(localStorage.getItem("id_funcion"));
+  const id_usuario = Number(localStorage.getItem("id_usuario"));
   const asientos = JSON.parse(localStorage.getItem("asientosTemporal")) || [];
 
   if (!id_usuario) {
@@ -40,32 +32,36 @@ async function realizarCompra() {
     return;
   }
 
-  const res = await fetch(`${API_URL}/api/comprar`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id_funcion,
-      id_asientos: asientos,
-      id_usuario
-    })
-  });
+  try {
+    const res = await fetch(`${API_URL}/api/tickets/comprar`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id_funcion,
+        id_asientos: asientos.map(Number),
+        id_usuario
+      })
+    });
 
-  if (!res.ok) {
-    const err = await res.json();
-    alert(err.error || "Error al procesar la compra");
-    return;
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Error al procesar la compra");
+      return;
+    }
+
+    localStorage.setItem("tickets", JSON.stringify(data.tickets));
+
+    localStorage.removeItem("asientosTemporal");
+    localStorage.removeItem("boletos");
+
+    alert("🎉 Compra realizada con éxito");
+    window.location.href = "ticket.html";
+
+  } catch (err) {
+    alert("Error de conexión con el servidor");
   }
-
-  localStorage.removeItem("asientosTemporal");
-  localStorage.removeItem("boletos");
-
-  alert("🎉 Compra realizada con éxito");
-  window.location.href = "Pagina Principal.html";
 }
-
-/* ===============================
-   CONFIRMAR PAGO (NO PAYPAL)
-================================ */
 
 function confirmarPago() {
   const metodo = document.querySelector('input[name="pago"]:checked');
@@ -90,19 +86,12 @@ function confirmarPago() {
   realizarCompra();
 }
 
-/* ===============================
-   CANCELAR
-================================ */
-
 function cancelarCompra() {
   alert("❌ La compra ha sido cancelada.");
   localStorage.removeItem("asientosTemporal");
+  localStorage.removeItem("boletos");
   window.location.href = "Pagina Principal.html";
 }
-
-/* ===============================
-   PAYPAL
-================================ */
 
 paypal.Buttons({
   style: {
@@ -111,6 +100,7 @@ paypal.Buttons({
     layout: "vertical",
     label: "paypal"
   },
+
   createOrder: function (data, actions) {
     return actions.order.create({
       purchase_units: [{
@@ -120,10 +110,12 @@ paypal.Buttons({
       }]
     });
   },
+
   onApprove: function (data, actions) {
     return actions.order.capture().then(function () {
       alert("✅ Pago realizado con PayPal");
       realizarCompra();
     });
   }
+
 }).render("#paypal-button-container");

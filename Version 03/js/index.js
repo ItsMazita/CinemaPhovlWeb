@@ -1,8 +1,8 @@
 async function handleLogin(e) {
   e.preventDefault();
 
-  const email = document.getElementById("email")?.value.trim();
-  const password = document.getElementById("password")?.value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
     alert("Completa todos los campos");
@@ -15,7 +15,7 @@ async function handleLogin(e) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }) // ✅ CORRECTO
     });
 
     const data = await res.json();
@@ -25,7 +25,7 @@ async function handleLogin(e) {
       return;
     }
 
-    // ✅ GUARDAR TODO LO NECESARIO
+    // ✅ GUARDAR SESIÓN
     localStorage.setItem("token", data.token);
     localStorage.setItem("id_usuario", data.id_usuario);
 
@@ -37,7 +37,6 @@ async function handleLogin(e) {
       })
     );
 
-    // ✅ REDIRECCIÓN
     window.location.href = "Pagina Principal.html";
 
   } catch (error) {
@@ -46,6 +45,7 @@ async function handleLogin(e) {
   }
 }
 
+localStorage.removeItem("tickets");
 function goToRegister() {
   window.location.href = "register.html";
 }
