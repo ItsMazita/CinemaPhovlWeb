@@ -45,7 +45,7 @@ async function handleRegister(e) {
     msgBox.textContent = "✅ Registro exitoso 🎉 Redirigiendo al login...";
 
     setTimeout(() => {
-      window.location.href = "index.html"; // login
+      window.location.href = "index.html"; 
     }, 1500);
 
   } catch (error) {

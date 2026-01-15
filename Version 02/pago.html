@@ -2,230 +2,161 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pago de Boletos - Cinema PHOVL</title>
+<title>Pagar Boletos - Cinema PHOVL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
-  :root{
-    --bg:#3d0652;           
-    --sidebar:#f1e208;      
-    --radius:12px;
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #3d0652, #5a1d82);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
   }
 
-  body{
-    margin:0;
-    background:var(--bg);
-    color:white;
-    display:flex;
-    font-family: Arial, sans-serif;
+  .card {
+    background: #2c004b;
+    border-radius: 16px;
+    padding: 40px 50px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* SIDEBAR */
-  .sidebar{
-    width:240px;
-    background:var(--sidebar);
-    padding:20px 0;
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    border-right:4px solid black;
+  h2 {
+    margin-bottom: 25px;
+    color: #f1e208;
+    font-size: 32px;
   }
 
-  .sidebar a{
-    padding:10px 20px;
-    display:block;
-    color:black;
-    font-weight:bold;
-    text-decoration:none;
+  .info-pago {
+    background: #3d0652;
+    border-radius: 16px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 18px;
   }
 
-  .sidebar a:hover{
-    background:#53004f;
-    color:var(--sidebar);
+  .info-pago span {
+    display: block;
+    margin-bottom: 8px;
   }
 
-  /* CONTENIDO */
-  .container{
-    margin-left:260px;
-    padding:30px;
-    width:calc(100% - 260px);
+  .total {
+    font-weight: bold;
+    font-size: 22px;
+    color: #f1e208;
+    margin-top: 10px;
   }
 
-  h2{
-    text-align:center;
-    margin-bottom:20px;
-    text-shadow:2px 2px 5px black;
+  #paypal-button-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
-  .pago-box{
-    width:55%;
-    margin:auto;
-    background:#4b0a63;
-    padding:30px;
-    border-radius:15px;
-    border:3px solid var(--sidebar);
-    box-shadow:0 0 10px black;
+  .btn-regresar {
+    margin-top: 20px;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 14px;
+    background: #808080;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s;
   }
 
-  .total{
-    text-align:center;
-    font-size:26px;
-    margin-bottom:25px;
-    font-weight:bold;
-    background:#3a074d;
-    padding:12px;
-    border-radius:10px;
-    border:2px solid var(--sidebar);
-  }
-
-  .metodo{
-    background:#3a074d;
-    border:2px solid var(--sidebar);
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:15px;
-    cursor:pointer;
-    font-size:18px;
-  }
-
-  .metodo input{
-    margin-right:10px;
-    transform:scale(1.2);
-  }
-
-  .acciones{
-    display:flex;
-    justify-content:space-between;
-    margin-top:30px;
-    gap:20px;
-  }
-
-  .btn{
-    width:100%;
-    padding:14px;
-    font-size:18px;
-    font-weight:bold;
-    border-radius:10px;
-    cursor:pointer;
-    border:2px solid black;
-  }
-
-  .btn-cancelar{
-    background:#ff4d4d;
-    color:white;
-  }
-
-  .btn-confirmar{
-    background:var(--sidebar);
-    color:black;
-  }
-
-  .btn:hover{
-    opacity:0.9;
+  .btn-regresar:hover {
+    background: #a0a0a0;
   }
 </style>
 </head>
-
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-  <a href="Pagina Principal.html">Inicio</a>
-  <a href="seleccion_asientos.html">Volver</a>
-</div>
-
-<!-- CONTENIDO -->
-<div class="container">
-
-  <h2>Confirmación de Pago</h2>
-
-  <div class="pago-box">
-
-    <div id="total" class="total">$0 MXN</div>
-
-    <h3>Selecciona tu método de pago</h3>
-
-    <label class="metodo">
-      <input type="radio" name="pago" value="Tarjeta">
-      💳 Tarjeta de Crédito / Débito
-    </label>
-
-    <label class="metodo">
-      <input type="radio" name="pago" value="Efectivo">
-      💵 Pago en efectivo en sucursal
-    </label>
-
-    <label class="metodo">
-      <input type="radio" name="pago" value="Transferencia">
-      🏦 Transferencia bancaria
-    </label>
-
-    <div class="acciones">
-      <button class="btn btn-cancelar" onclick="cancelarCompra()">Cancelar Compra</button>
-      <button class="btn btn-confirmar" onclick="confirmarPago()">Confirmar Pago</button>
-    </div>
-
+<div class="card">
+  <h2>Pagar Boletos - Cinema PHOVL</h2>
+  <div class="info-pago" id="infoPago">
+    <!-- Resumen de pago -->
   </div>
-
+  <div id="paypal-button-container"></div>
+  <button class="btn-regresar" id="regresarBtn">Regresar a selección de asientos</button>
 </div>
 
+<!-- SDK de PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=MXN"></script>
 <script>
-/* ==============================
-   CALCULAR TOTAL
-============================== */
+  // Información de localStorage
+  const funcionID = localStorage.getItem("funcionSeleccionada") || "El rey de reyes_Sucursal 2_2026-01-15_13:20";
+  const boletos = JSON.parse(localStorage.getItem("boletos_" + funcionID)) || {ninos:0, adultos:0, estudiantes:0, mayores:0};
+  const asientosSeleccionados = JSON.parse(localStorage.getItem("asientosSeleccionados")) || ["G6"];
 
-const precios = {
-  ninos: 55,
-  adultos: 85,
-  estudiantes: 65,
-  mayores: 60
-};
+  // Precios por tipo de boleto
+  const precios = {ninos:50, adultos:100, estudiantes:70, mayores:80};
+  const totalPago = boletos.ninos*precios.ninos + boletos.adultos*precios.adultos + boletos.estudiantes*precios.estudiantes + boletos.mayores*precios.mayores;
 
-const datos = JSON.parse(localStorage.getItem("boletos")) || {};
-let total =
-  (datos.ninos || 0) * precios.ninos +
-  (datos.adultos || 0) * precios.adultos +
-  (datos.estudiantes || 0) * precios.estudiantes +
-  (datos.mayores || 0) * precios.mayores;
+  // Crear texto de boletos mostrando solo los que se seleccionaron
+  let boletosTexto = [];
+  if(boletos.ninos > 0) boletosTexto.push(`Niños: ${boletos.ninos}`);
+  if(boletos.adultos > 0) boletosTexto.push(`Adultos: ${boletos.adultos}`);
+  if(boletos.estudiantes > 0) boletosTexto.push(`Estudiantes: ${boletos.estudiantes}`);
+  if(boletos.mayores > 0) boletosTexto.push(`Mayores: ${boletos.mayores}`);
 
-document.getElementById("total").textContent = `$${total} MXN`;
+  // Mostrar resumen
+  const infoDiv = document.getElementById("infoPago");
+  infoDiv.innerHTML = `
+    <span><strong>Función:</strong> ${funcionID}</span>
+    <span><strong>Boletos:</strong> ${boletosTexto.join(", ")}</span>
+    <span><strong>Asientos seleccionados:</strong> ${asientosSeleccionados.join(", ")}</span>
+    <span class="total">Total a pagar: $${totalPago} MXN</span>
+  `;
 
-/* ==============================
-   CANCELAR
-============================== */
-function cancelarCompra(){
-  alert("❌ La compra ha sido cancelada.");
-  localStorage.removeItem("asientosTemporal");
-  window.location.href = "Pagina Principal.html";
-}
+  // Botón PayPal
+  paypal.Buttons({
+    style: {
+      layout: 'vertical',
+      color:  'gold',
+      shape:  'rect',
+      label:  'paypal',
+      height: 50
+    },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: totalPago.toString() },
+          description: `Boletos Cinema PHOVL - Función ${funcionID} - Asientos: ${asientosSeleccionados.join(", ")}`
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Pago completado. Gracias, ' + details.payer.name.given_name + '!');
+        localStorage.removeItem("asientosSeleccionados");
+        localStorage.removeItem("boletos_" + funcionID);
+        localStorage.removeItem("funcionSeleccionada");
+        window.location.href = "confirmacion.html";
+      });
+    },
+    onCancel: function(data) { alert('Pago cancelado.'); },
+    onError: function(err) { console.error(err); alert('Ocurrió un error en el pago.'); }
+  }).render('#paypal-button-container');
 
-/* ==============================
-   CONFIRMAR
-============================== */
-function confirmarPago(){
-  const metodo = document.querySelector('input[name="pago"]:checked');
-
-  if(!metodo){
-    alert("Seleccione un método de pago.");
-    return;
-  }
-
-  // Guardar asientos como ocupados
-  const ocupados = JSON.parse(localStorage.getItem("asientosOcupados")) || [];
-  const temporal = JSON.parse(localStorage.getItem("asientosTemporal")) || [];
-
-  localStorage.setItem(
-    "asientosOcupados",
-    JSON.stringify([...ocupados, ...temporal])
-  );
-
-  localStorage.removeItem("asientosTemporal");
-
-  alert("✅ Venta confirmada\nMétodo de pago: " + metodo.value);
-
-  window.location.href = "Pagina Principal.html";
-}
+  // Botón regresar
+  document.getElementById("regresarBtn").addEventListener("click", () => {
+    window.location.href = "seleccion_asientos.html"; 
+  });
 </script>
 
 </body>

@@ -308,6 +308,27 @@
         opacity:0.3;
         pointer-events:none;
     }
+
+    .preventa-title{
+    text-align:center;
+    font-size:32px;
+    color:#f1e208;
+    margin-top:50px;
+    text-shadow:2px 2px 8px black;
+}
+
+.preventa-sub{
+  text-align:center;
+  font-size:18px;
+  margin-bottom:25px;
+  color:white;
+}
+
+.preventa-card{
+  border:4px solid gold;
+  box-shadow:0 0 25px gold;
+}
+
   </style>
 </head>
 
@@ -356,15 +377,16 @@
 
 </div>
 
+<h2 style="color:#f1e208;"> EN CARTELERA</h2>
   <!-- PELÍCULA 1 -->
   <div class="pelicula-card">
     <img src="zootopia-2.jpg" />
     <div class="info">
-      <h3></h3>
+      <h3>Zootopia 2</h3>
       <p><strong>Clasificación: B</strong></p>
       <p><strong>Duración:2 h 5 min</strong> </p>
       <p><strong>Sinopsis: Judy Hoops y Nick Wilde regresan en una nueva aventura</strong> </p>
-<a href="URL_AQUI" target="_blank">
+<a href="https://youtu.be/J13BsdX7JZU?si=Tfv_UYrpMYsbM8O7" target="_blank">
   <button style="
     padding:6px 12px;
     background:red;
@@ -379,14 +401,14 @@
 
       <div class="titulo-botones">Doblada</div>
       <div class="botones-h">
-        <button>12:00</button>
-        <button>15:40</button>
+        <button onclick="irABoletosSucursal2('Zootopia 2','Doblada','12:00')">12:00</button>
+        <button onclick="irABoletosSucursal2('Zootopia 2','Doblada','15:40')">15:40</button>
       </div>
 
       <div class="titulo-botones">Subtitulada</div>
       <div class="botones-h">
-        <button>18:20</button>
-        <button>21:00</button>
+        <button onclick="irABoletosSucursal2('Zootopia 2','Subtitulada','18:20')">18:20</button>
+        <button onclick="irABoletosSucursal2('Zootopia 2','Subtitulada','21:00')">21:00</button>
       </div>
     </div>
   </div>
@@ -395,11 +417,11 @@
   <div class="pelicula-card">
     <img src="King.jpg" />
     <div class="info">
-      <h3></h3>
+      <h3>El rey de reyes</h3>
       <p><strong>Clasificación: PG-13</PG-13></strong> </p>
       <p><strong>Duración: 1 h 55 min</strong> </p>
       <p><strong>Sinopsis: Un drama historico que revive la vida de Jesucristo.</strong></p>
-<a href="URL_AQUI" target="_blank">
+<a href="https://youtu.be/WDI2sD5snUU?si=9c2TT9TMe-Jbfjf2" target="_blank">
   <button style="
     padding:6px 12px;
     background:red;
@@ -414,14 +436,14 @@
 
       <div class="titulo-botones">Doblada</div>
       <div class="botones-h">
-        <button>11:00</button>
-        <button>13:20</button>
+        <button onclick="irABoletosSucursal2('El rey de reyes','Doblada','11:00')">11:00</button>
+        <button onclick="irABoletosSucursal2('El rey de reyes','Doblada','13:20')">13:20</button>
       </div>
 
       <div class="titulo-botones">Subtitulada</div>
       <div class="botones-h">
-        <button>17:10</button>
-        <button>19:40</button>
+        <button onclick="irABoletosSucursal2('El rey de reyes','Subtitulada','17:10')">17:10</button>
+        <button onclick="irABoletosSucursal2('El rey de reyes','Subtitulada','19:40')">19:40</button>
       </div>
     </div>
   </div>
@@ -434,7 +456,7 @@
       <p><strong>Clasificación:</strong> PG-13</p>
       <p><strong>Duración:</strong> 1h 54 min</p>
       <p><strong>Sinopsis:</strong> Aventura fuera de Barbieland</p>
-<a href="URL_AQUI" target="_blank">
+<a href="https://youtu.be/zh4KhVSMwtQ?si=KEYBq3HYN_mONrbo" target="_blank">
   <button style="
     padding:6px 12px;
     background:red;
@@ -449,14 +471,14 @@
 
       <div class="titulo-botones">Doblada</div>
       <div class="botones-h">
-        <button>14:00</button>
-        <button>16:30</button>
+        <button onclick="irABoletosSucursal2('Barbie La Pelicula','Doblada','14:00')">14:00</button>
+        <button onclick="irABoletosSucursal2('Barbie La Pelicula','Doblada','16:30')">16:30</button>
       </div>
 
       <div class="titulo-botones">Subtitulada</div>
       <div class="botones-h">
-        <button>19:10</button>
-        <button>21:40</button>
+        <button onclick="irABoletosSucursal2('Barbie La Pelicula','Subtitulada','19:10')">19:10</button>
+        <button onclick="irABoletosSucursal2('Barbie La Pelicula','Subtitulada','21:40')">21:40</button>
       </div>
     </div>
   </div>
@@ -469,7 +491,7 @@
       <p><strong>Clasificación:</strong> R</p>
       <p><strong>Duración:</strong> 3h</p>
       <p><strong>Sinopsis:</strong> Miles viaja entre universos enfrentando a una gran amenaza multiversal.</p>
-<a href="URL_AQUI" target="_blank">
+<a href="https://youtu.be/gMPEbJQun68?si=vZQ61cfpqsr85eRS" target="_blank">
   <button style="
     padding:6px 12px;
     background:red;
@@ -484,92 +506,51 @@
 
       <div class="titulo-botones">Doblada</div>
       <div class="botones-h">
-        <button>10:00</button>
-        <button>12:45</button>
+        <button onclick="irABoletosSucursal2('Oppenheimer','Doblada','10:00')">10:00</button>
+        <button onclick="irABoletosSucursal2('Oppenheimer','Doblada','12:45')">12:45</button>
       </div>
 
       <div class="titulo-botones">Subtitulada</div>
       <div class="botones-h">
-        <button>17:30</button>
-        <button>20:00</button>
+        <button onclick="irABoletosSucursal2('Oppenheimer','Subtitulada','17:30')">17:30</button>
+        <button onclick="irABoletosSucursal2('Oppenheimer','Subtitulada','20:00')">20:00</button>
+
       </div>
     </div>
   </div>
 
-  <!-- PELÍCULA 5 -->
-  <div class="pelicula-card">
-    <img src="" />
-    <div class="info">
-      <h3></h3>
-      <p><strong>Clasificación:</strong>  </p>
-      <p><strong>Duración:</strong> </p>
-      <p><strong>Sinopsis:</strong> </p>
-<a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
+ <h2 class="preventa-title">PREVENTA</h2>
+ 
 
+  <div class="pelicula-card preventa-card">
+  <img src="Silent h.jpg" />
+  <div class="info">
+    <h3>Return to Silent Hill</h3>
+    <p><strong>Clasificación:</strong> R</p>
+    <p><strong>Duración:</strong> 1 h 46 min</p>
+    <p><strong>Sinopsis:</strong> El protagonista, impulsado por una carta misteriosa, regresa al pueblo maldito de Silent Hill.</p>
 
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>11:10</button>
-        <button>13:50</button>
-      </div>
+    <a href="https://youtu.be/cmC5LPmsHno?si=_I5Ig_9fILA4hUkt" target="_blank">
+      <button class="trailer-btn">Ver trailer</button>
+    </a>
 
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>18:10</button>
-        <button>20:40</button>
-      </div>
+    <div class="titulo-botones">Doblada</div>
+    <div class="botones-h">
+      <button onclick="irABoletosSucursal2('Return to Silent Hill','Doblada','18:00')">18:00</button>
     </div>
-  </div>
 
-  <!-- PELÍCULA 6 -->
-  <div class="pelicula-card">
-    <img src="" />
-    <div class="info">
-      <h3></h3>
-      <p><strong>Clasificación:</strong> </p>
-      <p><strong>Duración:</strong> </p>
-      <p><strong>Sinopsis:</strong> </p>
-      <a href="URL_AQUI" target="_blank">
-  <button style="
-    padding:6px 12px;
-    background:red;
-    color:white;
-    border:none;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-    border:2px solid black;
-  ">Ver trailer</button>
-</a>
-
-
-
-      <div class="titulo-botones">Doblada</div>
-      <div class="botones-h">
-        <button>12:30</button>
-        <button>15:00</button>
-      </div>
-
-      <div class="titulo-botones">Subtitulada</div>
-      <div class="botones-h">
-        <button>18:45</button>
-        <button>21:15</button>
-      </div>
+    <div class="titulo-botones">Subtitulada</div>
+    <div class="botones-h">
+      <button onclick="irABoletosSucursal2('Return to Silent Hill','Subtitulada','20:30')">20:30</button>
     </div>
-  </div>
 
+    <p style="margin-top:15px;color:#f1e208;font-weight:bold;">
+      Preventa activa desde el día 19
+    </p>
+  </div>
 </div>
+
+
 
 <script>
   /* SIDEBAR */
@@ -597,7 +578,8 @@
     today.setHours(0,0,0,0);
 
     const maxLimit = new Date(today);
-    maxLimit.setDate(maxLimit.getDate() + 14);
+    maxLimit.setDate(maxLimit.getDate() + 6);
+
 
     const weekNames = ["DOM","LUN","MAR","MIÉ","JUE","VIE","SÁB"];
 
@@ -614,30 +596,40 @@
     }
 
     function renderWeekDays(){
-        weekDaysContainer.innerHTML = "";
+    weekDaysContainer.innerHTML = "";
 
-        const startOfWeek = new Date(selectedDate);
-        startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
+    const startOfWeek = new Date(today); // empieza HOY
 
-        for(let i=0;i<7;i++){
-            const d = new Date(startOfWeek);
-            d.setDate(startOfWeek.getDate() + i);
+    for(let i=0;i<7;i++){
+        const d = new Date(startOfWeek);
+        d.setDate(startOfWeek.getDate() + i);
 
-            const div = document.createElement("div");
-            div.className = "day";
-            if(d.toDateString() === selectedDate.toDateString()) div.classList.add("selected");
+        const div = document.createElement("div");
+        div.className = "day";
 
-            div.textContent = weekNames[i];
+        if(d.toDateString() === selectedDate.toDateString()){
+            div.classList.add("selected");
+        }
 
+        div.innerHTML = `
+          <div style="font-size:16px;">${d.getDate()}</div>
+          <div style="font-size:13px;">${weekNames[d.getDay()]}</div>
+        `;
+
+        if(d > maxLimit || d < today){
+            div.classList.add("disabled");
+        } else {
             div.onclick = ()=>{
                 selectDate(d);
                 currentMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
                 renderUI();
             };
-
-            weekDaysContainer.appendChild(div);
         }
+
+        weekDaysContainer.appendChild(div);
     }
+}
+
 
     function renderCalendar(){
         calendarGrid.innerHTML = "";
@@ -695,8 +687,40 @@
         currentMonth = tentative;
         renderCalendar();
     };
+
+    function irABoletosSucursal2(pelicula, idioma, hora){
+    const fecha = obtenerFechaFuncion(pelicula);
+
+    window.location.href =
+        `pagina_boletos.html?pelicula=${encodeURIComponent(pelicula)}` +
+        `&idioma=${encodeURIComponent(idioma)}` +
+        `&hora=${encodeURIComponent(hora)}` +
+        `&fecha=${fecha}` +
+        `&sucursal=Sucursal 2`;
+}
+
+function obtenerFechaFuncion(pelicula){
+    // Preventa fija
+    if(pelicula === "Return to Silent Hill"){
+        return "2026-01-19";
+    }
+
+    // Usar la fecha seleccionada del calendario
+    if(selectedDate){
+        const year = selectedDate.getFullYear();
+        const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+        const day = String(selectedDate.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
+
+    // Respaldo (hoy)
+    const hoy = new Date();
+    return hoy.toISOString().split("T")[0];
+}
+
+
+
 </script>
 
 </body>
 </html>
-

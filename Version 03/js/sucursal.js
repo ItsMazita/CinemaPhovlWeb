@@ -3,6 +3,10 @@ const id_sucursal = Number(document.body.dataset.sucursal);
 
 let fechaSeleccionada = new Date().toISOString().split("T")[0];
 
+/* ===============================
+   SEMANA
+================================ */
+
 function cargarSemana() {
   const contenedor = document.getElementById("weekDays");
   contenedor.innerHTML = "";
@@ -35,6 +39,9 @@ function cargarSemana() {
   }
 }
 
+/* ===============================
+   CARTELERA
+================================ */
 
 async function cargarCartelera() {
   try {
@@ -63,7 +70,6 @@ async function cargarCartelera() {
             <h3>${peli.titulo}</h3>
             <p><b>Clasificación:</b> ${peli.clasificacion}</p>
             <p><b>Duración:</b> ${peli.duracion} min</p>
-
             ${renderFunciones(funciones)}
           </div>
         </div>
@@ -79,6 +85,10 @@ async function cargarCartelera() {
   }
 }
 
+/* ===============================
+   FUNCIONES
+================================ */
+
 function renderFunciones(funciones) {
   let html = "";
   const idiomas = [...new Set(funciones.map(f => f.idioma))];
@@ -91,7 +101,7 @@ function renderFunciones(funciones) {
       .filter(f => f.idioma === idioma)
       .forEach(f => {
         html += `
-          <button onclick="seleccionarFuncion(${f.id_funcion})">
+          <button onclick="seleccionarFuncion(${f.id_funcion}, ${f.id_sala})">
             ${f.hora_inicio}
           </button>
         `;
@@ -103,12 +113,21 @@ function renderFunciones(funciones) {
   return html;
 }
 
-function seleccionarFuncion(id_funcion) {
+/* ===============================
+   SELECCIÓN
+================================ */
+
+function seleccionarFuncion(id_funcion, id_sala) {
   localStorage.setItem("id_funcion", id_funcion);
+  localStorage.setItem("id_sala", id_sala);
   localStorage.setItem("fecha", fechaSeleccionada);
   localStorage.setItem("id_sucursal", id_sucursal);
   window.location.href = "pagina_boletos.html";
 }
+
+/* ===============================
+   INIT
+================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarSemana();

@@ -4,285 +4,197 @@
 <meta charset="UTF-8">
 <title>Seleccionar Asientos - Cinema PHOVL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
-  :root{
-    --bg:#3d0652;           
-    --sidebar:#f1e208;      
-    --radius:12px;
+  :root {
+    --bg: #3d0652;
+    --screen: #ccc;
+    --asiento-disponible: #808080;
+    --asiento-ocupado: #ff0000;
+    --asiento-seleccionado: #ffff00;
+    --radius: 8px;
+    --gap: 10px;
   }
 
-  body{
-    margin:0;
-    background:var(--bg);
-    color:white;
-    display:flex;
+  body {
+    margin: 0;
+    background: var(--bg);
     font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
   }
 
-  /* Sidebar */
-  .sidebar{
-    width:240px;
-    background:var(--sidebar);
-    padding:20px 0;
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    border-right:4px solid black;
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
   }
 
-  .sidebar a{
-    padding:10px 20px;
-    display:block;
-    color:black;
-    font-weight:bold;
-    text-decoration:none;
+  .pantalla {
+    width: 80%;
+    height: 40px;
+    background: var(--screen);
+    margin-bottom: 20px;
+    border-radius: var(--radius);
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    color: black;
   }
 
-  /* Contenido */
-  .container{
-    margin-left:260px;
-    padding:20px;
-    width:calc(100% - 260px);
+  .leyenda {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
   }
 
-  h2{
-    text-align:center;
-    margin-bottom:10px;
+  .leyenda span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
-  .info-boletos{
-    text-align:center;
-    font-size:20px;
-    margin-bottom:20px;
+  .cuadro {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: inline-block;
   }
 
-  /* Pantalla */
-  .screen{
-    width:70%;
-    background:white;
-    color:black;
-    margin:auto;
-    text-align:center;
-    padding:10px;
-    border-radius:20px;
-    font-weight:bold;
-    margin-top:10px;
-    margin-bottom:35px;
-    box-shadow:0 0 20px #fff;
+  .asientos-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    gap: var(--gap);
+    margin-bottom: 30px;
   }
 
-  /* Sala RECTANGULAR */
-  #sala{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+  .asiento {
+    width: 50px;
+    height: 50px;
+    background: var(--asiento-disponible);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    color: black;
   }
 
-  .fila{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-bottom:10px;
-    gap:10px;
+  .asiento.ocupado {
+    background: var(--asiento-ocupado);
+    cursor: not-allowed;
   }
 
-  .fila-label{
-    width:40px;
-    color:#f1e208;
-    font-weight:bold;
-    text-align:center;
-    margin-right:10px;
-    font-size:18px;
+  .asiento:hover:not(.ocupado):not(.seleccionado) {
+    background: var(--asiento-seleccionado);
   }
 
-  .seat{
-    width:35px;
-    height:35px;
-    background:#666;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:6px;
-    cursor:pointer;
-    user-select:none;
-    border:2px solid black;
-    color:white;
-    font-size:13px;
-    transition:0.2s;
+  .asiento.seleccionado {
+    background: var(--asiento-seleccionado);
   }
 
-  .seat:hover{
-    transform:scale(1.15);
+  .btn-comprar {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--radius);
+    background: #f1e208;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s;
   }
 
-  .selected{
-    background:#ffd700;
+  .btn-comprar:hover {
+    background: #ffe97f;
   }
 
-  .occupied{
-    background:red !important;
-    cursor:not-allowed;
-  }
-
-  .btn-confirmar{
-    margin-top:35px;
-    width:60%;
-    margin-left:20%;
-    padding:12px;
-    font-size:18px;
-    font-weight:bold;
-    background:var(--sidebar);
-    color:black;
-    border:2px solid black;
-    border-radius:10px;
-    cursor:pointer;
-  }
-
-  #leyenda{
-    text-align:center;
-    margin-top:30px;
-    font-size:18px;
-  }
-
-  #leyenda div{
-    margin:6px;
+  .info-boletos {
+    margin-bottom: 15px;
+    font-size: 16px;
   }
 </style>
 </head>
-
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-  <a href="Pagina Principal.html">Inicio</a>
-  <a href="pagina_boletos.html">Volver</a>
+<h2>Selecciona tus Asientos</h2>
+
+<div class="pantalla">🎬 Pantalla</div>
+
+<div class="leyenda">
+  <span><div class="cuadro" style="background: #808080;"></div> Gris = Disponible</span>
+  <span><div class="cuadro" style="background: #ff0000;"></div> Rojo = Ocupado</span>
+  <span><div class="cuadro" style="background: #ffff00;"></div> Amarillo = Seleccionado</span>
 </div>
 
-<!-- Contenido -->
-<div class="container">
-
-  <h2>Selecciona tus Asientos</h2>
-
-  <div class="info-boletos" id="infoBoletos"></div>
-
-  <div class="screen">PANTALLA</div>
-
-  <div id="sala"></div>
-
-  <div id="leyenda">
-    <div style=color:red> Ocupado</div>
-    <div style="color:#666"> Disponible</div>
-  </div>
-
-  <button class="btn-confirmar" onclick="confirmar()">Confirmar Asientos</button>
-
+<div class="info-boletos" id="infoBoletos">
+  <!-- Aquí se mostrará el total de boletos a seleccionar -->
 </div>
+
+<div class="asientos-grid" id="asientosGrid"></div>
+
+<button class="btn-comprar" id="comprarBtn">Comprar Boletos</button>
 
 <script>
+  // 1️⃣ Recuperar la función y los boletos desde localStorage
+  const funcionID = localStorage.getItem("funcionSeleccionada");
+  const boletos = JSON.parse(localStorage.getItem("boletos_" + funcionID)) || {ninos:0, adultos:0, estudiantes:0, mayores:0};
 
-//  CONFIGURACIÓN DE SALA (12 EN TODAS)
+  // 2️⃣ Calcular el total de boletos seleccionados
+  const totalBoletos = boletos.ninos + boletos.adultos + boletos.estudiantes + boletos.mayores;
+  
+  // 3️⃣ Mostrar el total de boletos a seleccionar en la página
+  document.getElementById("infoBoletos").textContent = `Total de boletos a seleccionar: ${totalBoletos}`;
 
+  // 4️⃣ Luego generas la cuadrícula de asientos
+  const filas = ['A','B','C','D','E','F','G'];
+  const asientosPorFila = 10;
+  const grid = document.getElementById("asientosGrid");
+  const asientos = [];
 
-const distribucion = {
-  "A": 12,
-  "B": 12,
-  "C": 12,
-  "D": 12,
-  "E": 12,
-  "F": 12,
-  "G": 12,
-  "H": 12,
-  "I": 12,
-  "J": 12,
-  "K": 12,
-  "L": 12
-};
+  filas.forEach(fila => {
+    for(let i = 1; i <= asientosPorFila; i++){
+      const div = document.createElement("div");
+      div.classList.add("asiento");
+      div.dataset.id = fila + i;
+      div.textContent = fila + i;
 
+      div.addEventListener("click", () => {
+        if(div.classList.contains("ocupado")) return;
 
-// INFO BOLETOS
+        const seleccionados = asientos.filter(a => a.classList.contains("seleccionado"));
+        if(!div.classList.contains("seleccionado") && seleccionados.length >= totalBoletos){
+          alert(`Solo puedes seleccionar ${totalBoletos} asientos.`);
+          return;
+        }
 
+        div.classList.toggle("seleccionado");
+      });
 
-const datos = JSON.parse(localStorage.getItem("boletos")) || {ninos:0, adultos:0, estudiantes:0, mayores:0};
-const total = (+datos.ninos) + (+datos.adultos) + (+datos.estudiantes) + (+datos.mayores);
+      grid.appendChild(div);
+      asientos.push(div);
+    }
+  });
 
-document.getElementById("infoBoletos").textContent =
-  "Boletos seleccionados: " + total;
-
-let ocupados = JSON.parse(localStorage.getItem("asientosOcupados")) || [];
-let seleccionados = [];
-
-//  GENERAR SALA
-function generarSala(){
-  const sala = document.getElementById("sala");
-
-  for(const fila in distribucion){
-    const numAsientos = distribucion[fila];
-
-    const filaDiv = document.createElement("div");
-    filaDiv.classList.add("fila");
-
-    const label = document.createElement("span");
-    label.classList.add("fila-label");
-    label.textContent = fila;
-    filaDiv.appendChild(label);
-
-    for(let n=1; n<=numAsientos; n++){
-      const seat = document.createElement("div");
-      seat.classList.add("seat");
-      seat.textContent = n;
-
-      const id = `${fila}${n}`;
-      seat.dataset.id = id;
-
-      if(ocupados.includes(id)){
-        seat.classList.add("occupied");
-      }
-
-      seat.onclick = ()=>toggleSeat(seat);
-
-      filaDiv.appendChild(seat);
+  // Botón de compra
+  document.getElementById("comprarBtn").addEventListener("click", () => {
+    const seleccionados = asientos.filter(a => a.classList.contains("seleccionado"));
+    if(seleccionados.length !== totalBoletos){
+      alert(`Debes seleccionar exactamente ${totalBoletos} asientos para continuar.`);
+      return;
     }
 
-    sala.appendChild(filaDiv);
-  }
-}
-
-//  SELECCIÓN
-function toggleSeat(seat){
-  const id = seat.dataset.id;
-
-  if(seat.classList.contains("occupied"))
-    return;
-
-  if(seat.classList.contains("selected")){
-    seat.classList.remove("selected");
-    seleccionados = seleccionados.filter(s=>s!==id);
-  } else {
-    if(seleccionados.length < total){
-      seat.classList.add("selected");
-      seleccionados.push(id);
-    }
-  }
-}
-
-//  CONFIRMAR
-
-function confirmar(){
-  if(seleccionados.length !== total){
-    alert("Debe seleccionar exactamente " + total + " asientos.");
-    return;
-  }
-
-  localStorage.setItem("asientosTemporal", JSON.stringify(seleccionados));
-
-  window.location.href = "pago.html";
-}
-
-generarSala();
+    const indicesSeleccionados = seleccionados.map(a => a.dataset.id);
+    localStorage.setItem("asientosSeleccionados", JSON.stringify(indicesSeleccionados));
+    window.location.href = "pago.html";
+  });
 </script>
+
 
 </body>
 </html>
+
