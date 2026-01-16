@@ -1,9 +1,5 @@
 const API_URL = "https://cinema-phovl-api.onrender.com";
 
-/* ===============================
-   DATOS GENERALES
-================================ */
-
 const id_funcion = localStorage.getItem("id_funcion");
 const id_sala = localStorage.getItem("id_sala");
 
@@ -12,9 +8,6 @@ if (!id_funcion || !id_sala) {
   window.location.href = "Pagina Principal.html";
 }
 
-/* ===============================
-   BOLETOS
-================================ */
 
 const datos = JSON.parse(localStorage.getItem("boletos")) || {
   ninos: 0,
@@ -32,17 +25,11 @@ const total =
 document.getElementById("infoBoletos").textContent =
   "Boletos seleccionados: " + total;
 
-/* ===============================
-   ESTADO
-================================ */
 
 let ocupados = [];
 let seleccionados = [];
 let asientos = [];
 
-/* ===============================
-   CARGA DE DATOS
-================================ */
 
 async function cargarAsientos() {
   try {
@@ -66,9 +53,6 @@ async function cargarOcupados() {
   }
 }
 
-/* ===============================
-   RENDER DE SALA
-================================ */
 
 function generarSala() {
   const sala = document.getElementById("sala");
@@ -110,10 +94,6 @@ function generarSala() {
   }
 }
 
-/* ===============================
-   SELECCIÓN
-================================ */
-
 function toggleSeat(seat) {
   const id = Number(seat.dataset.id);
 
@@ -130,9 +110,6 @@ function toggleSeat(seat) {
   }
 }
 
-/* ===============================
-   CONFIRMAR
-================================ */
 
 function confirmar() {
   if (seleccionados.length !== total) {
@@ -143,10 +120,6 @@ function confirmar() {
   localStorage.setItem("asientosTemporal", JSON.stringify(seleccionados));
   window.location.href = "pago.html";
 }
-
-/* ===============================
-   INIT
-================================ */
 
 async function init() {
   await cargarAsientos();

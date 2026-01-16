@@ -27,8 +27,8 @@ async function realizarCompra() {
     return;
   }
 
-  if (asientos.length === 0) {
-    alert("No hay asientos seleccionados");
+  if (!id_funcion || asientos.length === 0) {
+    alert("Datos inválidos de compra");
     return;
   }
 
@@ -50,7 +50,18 @@ async function realizarCompra() {
       return;
     }
 
-    localStorage.setItem("tickets", JSON.stringify(data.tickets));
+    const ticketsGuardados =
+      JSON.parse(localStorage.getItem("tickets")) || [];
+
+    const ticketsConUsuario = data.tickets.map(t => ({
+      ...t,
+      id_usuario
+    }));
+
+    localStorage.setItem(
+      "tickets",
+      JSON.stringify([...ticketsGuardados, ...ticketsConUsuario])
+    );
 
     localStorage.removeItem("asientosTemporal");
     localStorage.removeItem("boletos");
@@ -59,6 +70,7 @@ async function realizarCompra() {
     window.location.href = "ticket.html";
 
   } catch (err) {
+    console.error(err);
     alert("Error de conexión con el servidor");
   }
 }
@@ -71,17 +83,9 @@ function confirmarPago() {
     return;
   }
 
-  if (metodo.value === "Tarjeta") {
-    alert("💳 Pago con tarjeta aprobado");
-  }
-
-  if (metodo.value === "Efectivo") {
-    alert("💵 Pago en efectivo registrado");
-  }
-
-  if (metodo.value === "Transferencia") {
-    alert("🏦 Transferencia registrada");
-  }
+  if (metodo.value === "Tarjeta") alert("💳 Pago con tarjeta aprobado");
+  if (metodo.value === "Efectivo") alert("💵 Pago en efectivo registrado");
+  if (metodo.value === "Transferencia") alert("🏦 Transferencia registrada");
 
   realizarCompra();
 }

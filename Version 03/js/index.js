@@ -15,7 +15,7 @@ async function handleLogin(e) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email, password }) // ✅ CORRECTO
+      body: JSON.stringify({ email, password }) 
     });
 
     const data = await res.json();
@@ -25,7 +25,6 @@ async function handleLogin(e) {
       return;
     }
 
-    // ✅ GUARDAR SESIÓN
     localStorage.setItem("token", data.token);
     localStorage.setItem("id_usuario", data.id_usuario);
 
